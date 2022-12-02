@@ -14,9 +14,6 @@ export const register = (req, res) => {
     // Hash password
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    const pass = bcrypt.hashSync("Jonathan", salt);
-
-    console.log("PASS", pass);
     const addUser =
       "INSERT INTO users (`username`, `email`, `password`) VALUES (?)";
     const values = [username, email, hash];
@@ -57,4 +54,12 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {};
+export const logout = (req, res) => {
+  res
+    .clearCookie("access_token", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("User has been logged out!");
+};
