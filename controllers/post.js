@@ -19,6 +19,24 @@ export const getPost = async (req, res) => {
 
   db.query(query, [postId], (err, results) => {
     if (err) return res.json(err);
-    res.status(200).json(results);
+    res.status(200).json(results[0]);
+  });
+};
+
+export const deletePost = async (req, res) => {
+  const currentUser = req.currentUser;
+  const postId = req.params.id;
+  const checkPost = "SELECT * FROM posts WHERE id = ? AND user_id = ?";
+  const query = "DELETE FROM posts WHERE id = ? AND user_id = ?";
+
+  db.query(checkPost, [postId, currentUser], (err, results) => {
+    if (err || !results.length)
+      return res
+        .status(403)
+        .json("You need some permissions to delete this post");
+
+    db.query(query, [postId, currentUser], (err, results) =>
+      res.status(200).json("The post has been successfully deleted!")
+    );
   });
 };
