@@ -35,6 +35,9 @@ app.post(
   }
 );
 
+app.get("/", (req, res) => {
+  return res.json("Server is connected");
+});
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
