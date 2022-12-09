@@ -1,7 +1,7 @@
 import express from "express";
-import authRouter from "./routes/auth.js";
-import userRouter from "./routes/users.js";
-import postRouter from "./routes/posts.js";
+import authRouter from "./routes/auth.cjs";
+import userRouter from "./routes/users.cjs";
+import postRouter from "./routes/posts.cjs";
 import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import multer from "multer";

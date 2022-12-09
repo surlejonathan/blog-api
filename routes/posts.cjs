@@ -5,8 +5,8 @@ import {
   deletePost,
   createPost,
   updatePost,
-} from "../controllers/post.js";
-import { checkToken } from "../middlewares/checkToken.js";
+} from "../controllers/post.cjs";
+import { checkToken } from "../middlewares/checkToken.cjs";
 
 const router = express.Router();
 
