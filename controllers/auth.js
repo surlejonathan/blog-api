@@ -2,7 +2,7 @@ import { db } from "../db.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = (req, res) => {
+export const register = async (req, res) => {
   // Check existing user
   const query = "SELECT * FROM users WHERE email = ? OR username = ?";
   const { email, username, password } = req.body;
@@ -25,7 +25,7 @@ export const register = (req, res) => {
   });
 };
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
   // Check user
   const query = "SELECT * FROM users WHERE username = ?";
 
@@ -54,7 +54,7 @@ export const login = (req, res) => {
   });
 };
 
-export const logout = (req, res) => {
+export const logout = async (req, res) => {
   res
     .clearCookie("access_token", {
       sameSite: "none",
