@@ -15,14 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-const corsOptions = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
