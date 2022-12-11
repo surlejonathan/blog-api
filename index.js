@@ -4,6 +4,7 @@ import userRouter from "./routes/users.js";
 import postRouter from "./routes/posts.js";
 import * as dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import multer from "multer";
 
 dotenv.config();
@@ -14,6 +15,14 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
