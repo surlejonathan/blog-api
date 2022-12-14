@@ -13,6 +13,10 @@ const PORT = process.env.PORT || 3010;
 
 const app = express();
 
+console.log("ENV", process.env.NODE_ENV);
+
+app.set("trust proxy", process.env.NODE_ENV !== "production");
+
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_BASE_URL }));
 app.use(cookieParser());
