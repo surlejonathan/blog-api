@@ -43,7 +43,9 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/posts", postRouter);
 app.get("/", (req, res) => {
-  return res.json("Server is connected");
+  return res.json(
+    `Server is connected + client: ${process.env.CLIENT_BASE_URL} `
+  );
 });
 app.listen(PORT, () => {
   console.log(`Server successfully connected on port ${PORT}`);
