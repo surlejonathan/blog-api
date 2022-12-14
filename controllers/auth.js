@@ -45,7 +45,14 @@ export const login = (req, res) => {
 
     const token = jwt.sign(result[0].id, process.env.JWT_KEY);
 
-    res.cookie("access_token", token).status(200).json(other);
+    res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        domain: "my-blog-api.up.railway.app",
+        secure: true,
+      })
+      .status(200)
+      .json(other);
   });
 };
 
