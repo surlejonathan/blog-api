@@ -25,7 +25,7 @@ export const register = async (req, res) => {
   });
 };
 
-export const login = async (req, res) => {
+export const login = (req, res) => {
   // Check user
   const query = "SELECT * FROM users WHERE username = ?";
 
@@ -48,13 +48,15 @@ export const login = async (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        sameSite: "strict",
+        secure: true,
       })
       .status(200)
       .json(other);
   });
 };
 
-export const logout = async (req, res) => {
+export const logout = (req, res) => {
   res
     .clearCookie("access_token", {
       sameSite: "none",

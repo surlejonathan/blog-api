@@ -14,8 +14,9 @@ const PORT = process.env.PORT || 3010;
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(cors({ credentials: true, origin: process.env.CLIENT_BASE_URL }));
 app.use(cookieParser());
-app.use(cors());
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
