@@ -47,10 +47,10 @@ export const login = (req, res) => {
 
     res
       .cookie("access_token", token, {
+        sameSite: "strict",
+        path: "/",
+        expires: new Date(new Date().getTime() + 24 * 3600 * 1000 * 2),
         httpOnly: true,
-        secure: true,
-        sameSite: "none",
-        domain: ".vercel.app",
       })
       .status(200)
       .json(other);
