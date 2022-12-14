@@ -48,7 +48,7 @@ export const login = (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
-        domain: ".up.railway.app",
+        domain: ".app",
         secure: true,
         sameSite: "strict",
       })

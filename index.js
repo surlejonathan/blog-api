@@ -15,7 +15,7 @@ const app = express();
 
 console.log("ENV", process.env.NODE_ENV);
 
-app.set("trust proxy", process.env.NODE_ENV !== "production");
+app.set("trust proxy", 1);
 
 app.use(express.json());
 app.use(cors({ credentials: true, origin: process.env.CLIENT_BASE_URL }));
