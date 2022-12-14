@@ -48,6 +48,9 @@ export const login = (req, res) => {
     res
       .cookie("access_token", token, {
         httpOnly: true,
+        secure: true,
+        sameSite: "lax",
+        domain: "jonathans-blog.vercel.app",
       })
       .status(200)
       .json(other);
